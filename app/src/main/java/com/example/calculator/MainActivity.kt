@@ -1,6 +1,8 @@
 package com.example.calculator
 
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.calculator.databinding.ActivityMainBinding
 
@@ -17,16 +19,64 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        Log.d("lifeCycle", "onCreate")
 
         setListeners()
         signBtnClick()
         equalBtnClick()
 
-        //todo povorot ekrana
 //        if (savedInstanceState != null) {
+//            sign = savedInstanceState.getString("sign") ?: ""
+//            firstValue = savedInstanceState.getString("firstValue") ?: ""
+//            input = savedInstanceState.getString("input") ?: ""
+//            answer = savedInstanceState.getDouble("answer")
+//            setInput()
+//            setSign(sign)
 //
 //        }
     }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("lifeCycle", "onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("lifeCycle", "onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("lifeCycle", "onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("lifeCycle", "onStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("lifeCycle", "onDestroy")
+    }
+
+
+//    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+//        super.onSaveInstanceState(outState, outPersistentState)
+//        outState.putString("sign", sign)
+//        outState.putString("firstValue", firstValue)
+//        outState.putString("input", input)
+//        outState.putDouble("answer", answer ?: 0.0)
+//    }
+//
+//    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+//        super.onRestoreInstanceState(savedInstanceState)
+//        savedInstanceState.getString("sign")
+//        savedInstanceState.getString("firstValue")
+//        savedInstanceState.getString("input")
+//        savedInstanceState.getDouble("answer")
+//    }
 
     private fun setListeners() {
         binding.btn0.setOnClickListener {
